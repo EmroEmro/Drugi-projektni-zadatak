@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Projekti</title>
+    <style>
+        .portfolio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            background-color: black;
+            padding: 50px 90px;
+            min-height: 100vh;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 5px 15px rgba(183, 75, 75, 0.3);
+        }
+
+        .project-title {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            font-size: 16px;
+            color: #ccc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: #b74b4b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #161616;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background-color: #b74b4b;
+            padding: 20px 30px;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            color: white;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section-title {
+            color: #b74b4b;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .modal-description {
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-item {
+            color: #ccc;
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .feature-item:before {
+            content: "•";
+            color: #b74b4b;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background-color: rgba(183, 75, 75, 0.2);
+            border: 1px solid #b74b4b;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Emrah Jakubovic</a>
+        <nav>
+            <a href="index.html">Pocetna</a>
+            <a href="Usluge.html">Usluge</a>
+            <a href="Vjestine.html">Vjestine</a>
+            <a href="#" class="active">Portfolio</a>
+            <a href="Kontakt.html">Kontakt</a>
+        </nav>
+    </header>
+
+    <section class="portfolio">
+        <div class="portfolio-grid">
+            <div class="project-card" data-project="1">
+                <h3 class="project-title">E-commerce Website</h3>
+                <p class="project-description">Moderna e-commerce platforma sa naprednim funkcionalnostima za online kupovinu.</p>
+                <div class="project-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">MongoDB</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="2">
+                <h3 class="project-title">Portfolio Website</h3>
+                <p class="project-description">Personalizovana portfolio stranica sa modernim dizajnom i animacijama.</p>
+                <div class="project-tags">
+                    <span class="tag">HTML5</span>
+                    <span class="tag">CSS3</span>
+                    <span class="tag">JavaScript</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="3">
+                <h3 class="project-title">Blog Platform</h3>
+                <p class="project-description">Kompleksna blog platforma sa sistemom za upravljanje sadržajem.</p>
+                <div class="project-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Laravel</span>
+                </div>
+            </div>
+
+            <div class="project-card" data-project="4">
+                <h3 class="project-title">Task Manager App</h3>
+                <p class="project-description">Aplikacija za upravljanje zadacima sa real-time kolaboracijom.</p>
+                <div class="project-tags">
+                    <span class="tag">Vue.js</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Vuetify</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3 class="modal-section-title">O Projektu</h3>
+                    <p class="modal-description" id="modalDescription"></p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Ključne Funkcionalnosti</h3>
+                    <ul class="feature-list" id="modalFeatures"></ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Tehnologije</h3>
+                    <div class="tech-stack" id="modalTechStack"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
